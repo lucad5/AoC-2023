@@ -11,7 +11,7 @@ os.chdir(dname)
 def determine_position_of_each_number_in_a_string(string_from_list, spelled_out_numbers_and_their_numerical_equivalents):
     """ Returns a dictionary (numbers_and_their_positions) that contains:
     keys: each number that occurs in each string of the list passed to the function
-    values: the index of each instance a particular number (key) occurs within the string.
+    values: the index of each instance a particular number (key) occurs within the string
     """
 
     # Determine the index for each digit in the string
