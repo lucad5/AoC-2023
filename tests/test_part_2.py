@@ -23,16 +23,272 @@ def test_exception_is_raised_if_file_not_found():
     with pytest.raises(FileNotFoundError):
         solution.part_1.open_file_as_list_of_lines("wrong_filename_that_doesn't_exist.txt")
 
-## TODO: fill in these functions
-# def test_string_with_one_digit():
-# def test_string_with_one_spelled_out_number():
-# def test_string_with_multiple_spelled_out_numbers():
-# def test_string_with_one_digit_and_multiple_spelled_out_numbers():
-# def test_string_with_multiple_digits_and_multiple_spelled_out_numbers():
-# def test_string_with_alternating_digits_and_spelled_out_numbers():
-# def test_string_with_repeating_digits_and_repeating_spelled_out_numbers():
-# def test_string_with_digits_and_overlapping_spelled_out_numbers():
-# def test_string_with_special_characters():
-# def test_string_with_digit_and_spelled_out_number():
-# def test_list_with_multiple_lines:
-# def test_empty_string_is_handled_correctly():
+
+## Tests involving strings containing a single digit, or one of each digit
+
+def test_string_with_one_digit_one():
+
+    test_file_name = "test_string_with_one_digit_one.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("1")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 11
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_two():
+
+    test_file_name = "test_string_with_one_digit_two.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("2")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 22
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_three():
+
+    test_file_name = "test_string_with_one_digit_three.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("3")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 33
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_four():
+
+    test_file_name ="test_string_with_one_digit_four.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("4")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 44
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_five():
+
+    test_file_name = "test_string_with_one_digit_five.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("5")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 55
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_six():
+
+    test_file_name = "test_string_with_one_digit_six.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("6")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 66
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_seven():
+
+    test_file_name = "test_string_with_one_digit_seven.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("7")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 77
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_eight():
+
+    test_file_name = "test_string_with_one_digit_eight.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("8")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 88
+
+    os.remove(test_file_name)
+
+def test_string_with_one_digit_nine():
+
+    test_file_name = "test_string_with_one_digit_nine.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("9")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 99
+
+    os.remove(test_file_name)
+
+def test_string_containing_one_of_each():
+
+    test_file_name = "test_string_containing_one_of_each_digit.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("123456789")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 19
+
+    os.remove(test_file_name)
+
+## Tests involving strings containing a single spelled-out number, or one of each spelled-out number
+
+def test_string_with_one_spelled_out_number_one():
+
+    test_file_name = "test_string_with_one_spelled_out_number_one.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("one")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 11
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_two():
+
+    test_file_name = "test_string_with_one_spelled_out_number_two.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("two")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 22
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_three():
+
+    test_file_name = "test_string_with_one_spelled_out_number_three.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("three")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 33
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_four():
+
+    test_file_name = "test_string_with_one_spelled_out_number_four.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("four")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 44
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_five():
+
+    test_file_name = "test_string_with_one_spelled_out_number_five.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("five")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 55
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_six():
+
+    test_file_name = "test_string_with_one_spelled_out_number_six.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("six")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 66
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_seven():
+
+    test_file_name = "test_string_with_one_spelled_out_number_seven.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("seven")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 77
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_eight():
+
+    test_file_name = "test_string_with_one_spelled_out_number_eight.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("eight")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 88
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_nine():
+
+    test_file_name = "test_string_with_one_spelled_out_number_nine.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("nine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 99
+
+    os.remove(test_file_name)
+
+def test_string_with_one_spelled_out_number_nine():
+
+    test_file_name = "test_string_with_one_spelled_out_number_nine.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("nine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 99
+
+    os.remove(test_file_name)
+
+def test_string_with_one_of_each_spelled_out_number():
+
+    test_file_name = "test_string_with_one_of_each_spelled_out_number.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("onetwothreefourfivesixseveneightnine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 19
+
+    os.remove(test_file_name)
+
+## Tests involving both digits and spelled-out numbers
+
+def test_string_with_one_digit_and_multiple_spelled_out_numbers():
+    test_file_name = "test_string_with_one_digit_and_multiple_spelled_out_numbers.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("1onetwothreefourfivesixseveneightnine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 19
+
+    os.remove(test_file_name)
