@@ -282,8 +282,8 @@ def test_string_with_one_of_each_spelled_out_number():
 
 ## Tests involving both digits and spelled-out numbers
 
-def test_string_consisting_of_the_digit_for_the_number_and_multiple_spelled_out_numbers():
-    test_file_name = "test_string_consisting_of_the_digit_for_the_number_and_multiple_spelled_out_numbers.txt"
+def test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers():
+    test_file_name = "test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers.txt"
 
     with open(test_file_name, "w") as test_file:
         test_file.write("1onetwothreefourfivesixseveneightnine")
