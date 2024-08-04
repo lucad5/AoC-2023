@@ -22,7 +22,19 @@ def test_if_answer_is_correct():
 def test_exception_is_raised_if_file_not_found():
     with pytest.raises(FileNotFoundError):
         solution.part_1.open_file_as_list_of_lines("wrong_filename_that_doesn't_exist.txt")
+        
+def test_string_with_one_digit_one():
 
+    test_file_name = "test_string_with_one_digit_one.txt"
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("1")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 11
+
+    os.remove(test_file_name)
+        
 ## TODO: fill in these functions
 # def test_string_with_one_digit():
 # def test_string_with_one_spelled_out_number():
