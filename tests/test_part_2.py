@@ -64,7 +64,7 @@ def test_string_consisting_of_the_digit_for_the_number_three():
 
 def test_string_consisting_of_the_digit_for_the_number_four():
 
-    test_file_name ="test_string_consisting_of_the_digit_for_the_number_four.txt"
+    test_file_name = "test_string_consisting_of_the_digit_for_the_number_four.txt"
 
     with open(test_file_name, "w") as test_file:
         test_file.write("4")
@@ -285,22 +285,105 @@ def test_string_with_one_of_each_spelled_out_number():
 def test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers():
     test_file_name = "test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers.txt"
 
+    answer = 19
+
     with open(test_file_name, "w") as test_file:
         test_file.write("1onetwothreefourfivesixseveneightnine")
 
     with open(test_file_name, "r") as test_file:
-        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == 19
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
 
     os.remove(test_file_name)
 
+def test_string_consisting_of_multiple_spelled_out_numbers_followed_by_one_digit():
+    test_file_name = "test_string_consisting_of_multiple_spelled_out_numbers_followed_by_one_digit.txt"
+
+    answer = 11
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("onetwothreefourfivesixseveneightnine1")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers_followed_by_one_digit():
+    test_file_name = "test_string_consisting_of_one_digit_followed_by_multiple_spelled_out_numbers_followed_by_one_digit.txt"
+
+    answer = 11
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("1onetwothreefourfivesixseveneightnine1")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_string_consisting_of_each_digit_occurring_twice():
+    test_file_name = "test_string_consisting_of_each_digit_occurring_twice.txt"
+
+    answer = 10
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("11223344556677889900")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_string_consisting_of_each_spelled_out_number_occurring_twice():
+    test_file_name = "test_string_consisting_of_each_spelled_out_number_occurring_twice.txt"
+
+    answer = 19
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("oneonetwotwothreethreefourfourfivefivesixsixsevenseveneighteightninenine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_string_consisting_of_digit_occurring_twice_followed_by_each_spelled_out_number_occurring_twice():
+    test_file_name = "test_string_consisting_of_digit_occurring_twice_followed_by_each_spelled_out_number_occurring_twice.txt"
+
+    answer = 19
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("11223344556677889900oneonetwotwothreethreefourfourfivefivesixsixsevenseveneighteightninenine")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
 
 # TODO: fill in these tests
 
-# def test_string_with_multiple_digits_and_multiple_spelled_out_numbers():
-# def test_string_with_alternating_digits_and_spelled_out_numbers():
-# def test_string_with_repeating_digits_and_repeating_spelled_out_numbers():
-# def test_string_with_digits_and_overlapping_spelled_out_numbers():
-# def test_string_with_special_characters():
-# def test_string_with_digit_and_spelled_out_number():
-# def test_list_with_multiple_lines:
-# def test_empty_string_is_handled_correctly():
+def test_string_with_alternating_digits_and_spelled_out_numbers():
+    test_file_name = "test_string_with_alternating_digits_and_spelled_out_numbers.txt"
+
+    answer = 19
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("one1two2three3four4five5six6seven7eight8nine9")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_string_with_overlapping_spelled_out_numbers():
+    test_file_name = "test_string_with_overlapping_spelled_out_numbers.txt"
+
+    answer = 23
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("twonefiveightoneightthreeightnineightsevenineeightwoeighthree")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
