@@ -1,7 +1,6 @@
 # Setup
 
-
-Steps to complete to so the solutions will work:
+Steps to complete so the solutions can be run:
 - Access the Day 1 problem at https://adventofcode.com/2023.
 - In the root folder of the repo, create a file named `input.txt` file
 - In the `input.txt` file, paste the input from the Day 1 problem
