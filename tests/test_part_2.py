@@ -387,3 +387,29 @@ def test_string_with_overlapping_spelled_out_numbers():
         assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
 
     os.remove(test_file_name)
+
+def test_string_with_special_characters():
+    test_file_name = "test_string_with_special_characters.txt"
+
+    answer = 23
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write(r"!@#$%^&*()_+~|}{:\"<>/.,l;'[]=-`?twonefiveightoneightthreeightnineightsevenineeightwoeighthree")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
+
+def test_list_with_the_digits_for_one_and_two_on_two_lines():
+    test_file_name = "test_list_with_the_digits_for_one_and_two_on_two_lines.txt"
+
+    answer = 24
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("12\n12")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
