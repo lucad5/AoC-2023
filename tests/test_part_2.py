@@ -23,6 +23,18 @@ def test_exception_is_raised_if_file_not_found():
     with pytest.raises(FileNotFoundError):
         solution.part_1.open_file_as_list_of_lines("wrong_filename_that_doesn't_exist.txt")
 
+def test_empty_string_is_handled_correctly():
+    test_file_name = "test_empty_string_is_handled_correctly.txt"
+
+    answer = 0
+
+    with open(test_file_name, "w") as test_file:
+        test_file.write("")
+
+    with open(test_file_name, "r") as test_file:
+        assert solution.part_2.calculate_answer(os.path.basename(test_file.name)) == answer
+
+    os.remove(test_file_name)
 
 ## Tests involving strings containing a single digit, or one of each digit
 
