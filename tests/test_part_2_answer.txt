@@ -1,1 +1,2 @@
-Once you've calculated the answer for part 2, remove this text and paste the answer here
+15
+// The above is a sample answer that matches the sample input given in input.txt. Once you've calculated the answer for part 2, you can replace the text in this file with the answer for part 2
