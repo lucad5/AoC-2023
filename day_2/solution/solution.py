@@ -7,6 +7,7 @@ def create_dictionary_based_on_input(list_of_lines_from_input):
 
     dictionary_of_games = {}
 
+
     for line in list_of_lines_from_input:
         rounds_in_game = []
 
@@ -43,10 +44,12 @@ def create_dictionary_based_on_input(list_of_lines_from_input):
                     dictionary_of_games[game_id][round_index][color] = int(number)
 
             round_index += 1
+
     return dictionary_of_games
 
 
 def determine_ids_of_possible_games(dictionary_of_games):
+    """ Determine which game IDs were possible given a bag with 12 red cubes, 13 green cubes, and 14 blue cubes """
 
     list_of_ids_of_possible_games = []
 
@@ -55,8 +58,12 @@ def determine_ids_of_possible_games(dictionary_of_games):
     maximum_number_of_blue_cubes = 14
 
     for game_id in dictionary_of_games:
+
         game_is_possible = False
+
+        # Determine if any of the rounds cannot be played given the maximum numbers of each type of cube listed above
         for round in dictionary_of_games[game_id]:
+
             if "blue" in round:
                 if round["blue"] > maximum_number_of_blue_cubes:
                     number_of_blue_cubes_is_possible = False
@@ -69,7 +76,6 @@ def determine_ids_of_possible_games(dictionary_of_games):
                     break
                 else:
                     number_of_red_cubes_is_possible = True
-
             if "green" in round:
                 if round["green"] > maximum_number_of_green_cubes:
                     number_of_green_cubes_is_possible = False
@@ -77,6 +83,7 @@ def determine_ids_of_possible_games(dictionary_of_games):
                 else:
                     number_of_green_cubes_is_possible = True
 
+        # If the number of each type of cube for this round is possible, add the game_id to the list of possible games
         if number_of_blue_cubes_is_possible == True and number_of_red_cubes_is_possible == True and number_of_green_cubes_is_possible == True:
             list_of_ids_of_possible_games.append(game_id)
 
@@ -89,7 +96,9 @@ def calculate_sum_of_ids_of_possible_games(possible_games):
     return answer
 
 def determine_minimum_sets_of_cubes_in_input(dictionary_of_games):
-
+    """For each game in the input, determine the minimum number of each type (red, green, blue) of cube
+    necessary for the game to be playable.
+    """
     minimum_sets_of_cubes_in_input = {}
 
     for game_id in dictionary_of_games:
@@ -97,11 +106,19 @@ def determine_minimum_sets_of_cubes_in_input(dictionary_of_games):
         minimum_necessary_number_of_cubes_of_each_color_for_current_game = {}
 
         for round in dictionary_of_games[game_id]:
+
             for color in round:
+                
+                # If the current color has not previously been found in this round,
+                # add it to the minimum_necessary_number_of_cubes_of_each_color_for_current_game dictionary
                 if color not in minimum_necessary_number_of_cubes_of_each_color_for_current_game:
                     minimum_necessary_number_of_cubes_of_each_color_for_current_game[color] = round[color]
+
+                # To accommodate a larger number of cubes found in the current round,
+                # update the minimum necessary number of cubes
                 elif round[color] > minimum_necessary_number_of_cubes_of_each_color_for_current_game[color]:
                     minimum_necessary_number_of_cubes_of_each_color_for_current_game[color] = round[color]
+
                 elif round[color] < minimum_necessary_number_of_cubes_of_each_color_for_current_game[color]:
                     continue
 
@@ -121,14 +138,19 @@ def determine_sum_of_powers_of_minimum_sets_of_cubes_in_input(dictionary_of_mini
 
         power_of_minimum_number_of_cubes_of_each_color_in_current_game = int()
 
+        # Determine the power of the set of the minimum number of cubes in the current game
         for number_of_cubes in minimum_number_of_cubes_of_each_color_in_current_game:
 
+            # If no numbers have been added to power_of_minimum_number_of_cubes_of_each_color_in_current_game yet,
+            # add the current number of cubes to that variable
             if power_of_minimum_number_of_cubes_of_each_color_in_current_game == 0:
                 power_of_minimum_number_of_cubes_of_each_color_in_current_game += number_of_cubes
 
             else:
                 power_of_minimum_number_of_cubes_of_each_color_in_current_game *= number_of_cubes
 
+        # Add the power of the set of the minimum number of cubes in the current game
+        # to the list of all powers of sets in the input
         powers_of_minimum_sets_of_cubes_in_input.append(power_of_minimum_number_of_cubes_of_each_color_in_current_game)
 
     sum_of_powers_of_minimum_sets_of_cubes_in_input = int()
