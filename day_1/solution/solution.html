@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Apply JavaScript example</title>
+    <!-- <script type="module" src="script.js""></script> -->
+  </head>
+  <body>
+
+    <input type="file" id="fileInput" accept=".txt">
+
+  </body>
+  <script>
+
+
+    // TODO: This function is currently for Part 1; but it only counts digits as numbers, not spelled-out words
+    
+    function create_tree_of_number_positions(array_of_lines, part_number) {
+
+      /*
+      Takes the following arguments:
+      array_of_lines: an array where each element is a line from the input
+      part_number: indicates which part (part 1 or part 2) of the AoC challenge the function is being used for
+        possible options:
+          1
+          2
+
+
+      Creates a tree containing:
+      an array for each line
+        an array containing:
+          the calibration value for each line
+          an array containing the first digit in the line
+          an array containing the last digit in the line
+
+      The structure of the tree can be represented as follows:
+
+      {
+
+        [1, // this is a line number
+          [
+            // Each of these arrays contains:
+            // a number in the input
+            // the positions within the input of the first ("start") and last ("end") digit in that line
+
+            // "1" is a number in the input, 2 is the start position, and 2 is the end position (they are the same because a digit is only one character)
+            ["1", ["start", 2], ["end", 2]]
+            ["5", ["start", 13], ["end", 13]]
+          ]
+        ]
+
+        [2, [""]]
+
+        [3, [""]]
+      }
+      
+      */
+
+    tree_of_number_positions = [];
+
+      for (current_line_index = 0; current_line_index < array_of_lines.length; current_line_index++) {
+
+        /*
+          
+          [
+            // Each array contains a number, followed by two arrays describing its position within the line
+            // For example:
+            [1, ["start", 2], ["end", 2]] // 1 is the number, 2 is the position of the first character of the number, and 2 is the position of the last character of the number (they are the same, as 1 is a single character)
+            [3, ["start", 5], ["end", 5]]
+          ]
+
+        */
+        numbers_in_current_line = [];
+
+        for (current_char_index = 0; current_char_index < array_of_lines[current_line_index].length; current_char_index++) {
+
+          current_character = array_of_lines[current_line_index][current_char_index];
+          current_character_is_a_digit = !isNaN(current_character);
+
+          if (current_character_is_a_digit) {
+
+            numbers_in_current_line.push([current_character, ["start", current_char_index], ["end", current_char_index]]);
+
+          }
+
+          // TODO: Add a conditional here that parses spelled-out numbers if the function is passed 2 as the part_number parameter
+
+          end_of_line_is_reached = (current_char_index == array_of_lines[current_line_index].length - 1);
+
+          if (end_of_line_is_reached) {
+            
+            tree_of_number_positions.push([current_char_index, numbers_in_current_line])
+          }
+
+        }
+      }
+
+      return tree_of_number_positions
+
+    }
+
+    function determine_calibration_values(tree_of_number_positions) {
+
+      console.log("calibration values");
+
+      array_of_calibration_values = []
+
+      index_of_line_content_array = 1;
+      index_of_start_position_array = 1;
+      index_of_end_position_array = 2;
+      index_of_character_position = 1;
+      index_of_current_number = 0;
+
+
+      for (index_of_current_line = 0; index_of_current_line < tree_of_number_positions.length; index_of_current_line++) {
+
+        first_number_in_current_line = NaN
+        last_number_in_current_line = NaN
+
+        start_position_of_first_number_in_line = NaN
+
+        number_of_numbers_in_current_line = tree_of_number_positions[index_of_current_line][index_of_line_content_array].length
+
+        for (index_of_array_of_current_number = 0; index_of_array_of_current_number < number_of_numbers_in_current_line; index_of_array_of_current_number++) {
+  
+          current_number_in_line = tree_of_number_positions[index_of_current_line][index_of_line_content_array][index_of_array_of_current_number][index_of_current_number];
+
+          start_position_of_current_number_in_line = tree_of_number_positions[index_of_current_line][index_of_line_content_array][index_of_array_of_current_number][index_of_start_position_array][index_of_character_position];
+          end_position_of_current_number_in_line = tree_of_number_positions[index_of_current_line][index_of_line_content_array][index_of_array_of_current_number][index_of_end_position_array][index_of_character_position];
+          
+          current_line_has_only_one_number = (tree_of_number_positions[index_of_current_line][index_of_line_content_array].length === 1)
+          current_line_has_multiple_numbers = (tree_of_number_positions[index_of_current_line].length > 1);
+
+          if (current_line_has_only_one_number) {
+            first_number_in_current_line = current_number_in_line;
+            last_number_in_current_line = current_number_in_line;
+          }
+
+          else if (current_line_has_multiple_numbers) {
+
+            console.log("first number", first_number_in_current_line);
+
+            if (isNaN(first_number_in_current_line)) {
+
+              first_number_in_current_line = current_number_in_line;
+
+              start_position_of_first_number_in_line = start_position_of_current_number_in_line;
+            }
+
+            else {
+              console.log("last number", last_number_in_current_line);
+              last_number_in_current_line = current_number_in_line;
+            }
+
+          }
+        }
+        
+        calibration_value = Number(String(first_number_in_current_line) + String(last_number_in_current_line));
+        array_of_calibration_values.push(calibration_value);
+      }
+      
+      return array_of_calibration_values;
+    }
+
+    function calculate_sum_of_calibration_values(array_of_calibration_values) {
+
+      sum_of_calibration_values = 0;
+
+      for (i = 0; i < array_of_calibration_values.length; i++){
+        sum_of_calibration_values = sum_of_calibration_values + array_of_calibration_values[i];
+      }
+
+      return sum_of_calibration_values;
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        array_of_lines = []
+        reader.onload = function(e) {
+            const input = e.target.result;
+            console.log(input);
+
+            array_of_lines = input.split(/\r\n|\r|\n/)
+
+            tree_of_number_positions = create_tree_of_number_positions(array_of_lines, 1);
+
+            array_of_calibration_values = determine_calibration_values(tree_of_number_positions);
+
+            sum_of_calibration_values = calculate_sum_of_calibration_values(array_of_calibration_values);
+          };
+
+        reader.readAsText(file);
+    } else {
+        console.log('No file selected');
+    }
+
+    for (let i = 0; i<10; i++){
+      a = []
+      a[0] = 1
+    }
+
+
+});
+
+/*
+function create_tree_of_number_positions(input) {
+
+
+
+    } */
+
+    
+  </script>
+</html>
