@@ -9,7 +9,7 @@
   <body>
 
     <input type="file" id="fileInput" accept=".txt">
-
+    <pre id="fileContent"></pre>
   </body>
   <script>
 
@@ -191,6 +191,10 @@
             array_of_calibration_values = determine_calibration_values(tree_of_number_positions);
 
             sum_of_calibration_values = calculate_sum_of_calibration_values(array_of_calibration_values);
+
+            part_one_answer = sum_of_calibration_values;
+
+            document.getElementById('fileContent').textContent = 'Part 1 answer: ' + part_one_answer
           };
 
         reader.readAsText(file);
